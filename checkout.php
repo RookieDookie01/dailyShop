@@ -1,6 +1,5 @@
 <?php
   session_start();
-  error_reporting(0);
   include("logincon.php");
   
   if(isset($_POST['placeOrderBtn']))
@@ -32,7 +31,7 @@
                 $user_fullname = $user['user_fullname'];
                 $user_address = $user['user_address'];
                 $user_phone = $user['user_phone'];
-                $order_tracking = "mmuOutlet".rand(1111,9999).substr($order_phone,2);
+                $order_tracking = "mmuOutlet".rand(1111,9999).substr($user_phone,2);
                 
                 $total_query = "SELECT * FROM carts c, products p  WHERE c.product_id=p.product_id AND c.user_id ='$user_id'";
                 $run_total_query = mysqli_query($con, $total_query);
@@ -45,6 +44,7 @@
                 {
                   foreach($query_run as $item)
                   {
+                    $total = 0;
                     $total = $total + $item['product_price'];
                   }
                 }
@@ -70,6 +70,7 @@
     else
     {
       $_SESSION['message'] = "Incorrect Payment Details";
+      header('Location: index.php');
     }    
   }
 ?>
@@ -398,6 +399,7 @@
                         {
                           foreach($query_run as $item)
                           {
+                            $total = 0;
                             $total = $total + $item['product_price'];?>
                             <tbody>
                               <tr>
