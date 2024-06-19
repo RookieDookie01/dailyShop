@@ -1,0 +1,47 @@
+------------------------------------------------------------------------------------------------------------------------
+Saya taknak jadi budak nakal
+------------------------------------------------------------------------------------------------------------------------
+<!-- Alertify JS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+
+<!-- ALERTIFY JS -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script>
+            <?php if(isset($_SESSION['message']))
+            {?>
+                alertify.set('notifier','position', 'top-right');
+                alertify.success('<?= $_SESSION['message'] ?>');
+    <?php   
+            unset($_SESSION['message']);
+            } ?>
+        </script>
+
+
+$_SESSION['message'] = "Email";
+------------------------------------------------------------------------------------------------------------------------
+SET @num :=0;
+
+UPDATE credits SET credit_id = @num := @num+1;
+
+ALTER TABLE credits AUTO_INCREMENT = 1;
+------------------------------------------------------------------------------------------------------------------------
+if(isset($_SESSION['auth']))
+  {
+    if(isset($_GET['t']))
+    {
+      $product_id = $_GET['t'];
+      $user_id = $_SESSION['auth_user']['user_id'];
+
+      $insert_query = "INSERT INTO carts (user_id, product_id) VALUES ('$user_id', '$product_id')";
+      $insert_query_run = mysqli_query($con, $insert_query);
+      if($insert_query_run)
+      {
+        echo $_SESSION['message'] = "Item Added To Cart";
+      }
+    }
+  }
+
+<a href="mencasual.php?t=<?= $item['product_id']; ?>" class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+------------------------------------------------------------------------------------------------------------------------
