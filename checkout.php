@@ -1,6 +1,7 @@
 <?php
   session_start();
   include("logincon.php");
+  error_reporting(0);
   
   if(isset($_POST['placeOrderBtn']))
   {
